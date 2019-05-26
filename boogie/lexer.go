@@ -12,6 +12,8 @@ const (
 	START CtxState = 0 + iota
 	// LABEL sets the label state
 	LABEL
+	// KEYWORD sets the keyword state.
+	KEYWORD
 )
 
 /*
@@ -79,6 +81,10 @@ func (lexer *Lexer) Run() {
 
 func (lexer *Lexer) isDelim(str string) bool {
 	return lexer.stringInSlice(str, lexer.delims)
+}
+
+func (lexer *Lexer) isKey(str string) bool {
+	return lexer.stringInSlice(str, lexer.keys)
 }
 
 func (lexer *Lexer) stringInSlice(str string, list []string) bool {
